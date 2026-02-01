@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kuntavaalit – Tutkijasovellus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      crossorigin=""
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"
+      defer
+    ></script>
+
+    <script src="elections.js" defer></script>
+
+
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Kuntavaalit – datanäkymä</h1>
+      <div id="status" class="status"></div>
+    </header>
+
+    <label>
+    Election Type
+    <select id="electionType">
+      <option value="municipal">Municipal Elections</option>
+      <option value="presidential">Presidential Elections</option>
+      </select>
+        </label>
+
+
+    <main class="layout">
+      <section class="leftPane">
+        <div class="card">
+          <h2>Suodattimet</h2>
+          <div class="filters">
+            <label>
+              Vuosi
+              <select id="yearSelect"></select>
+            </label>
+
+            <label>
+              Filtterit
+              <select id="sexMeasureSelect">
+                <option value="aanet">Äänimäärä yhteensä</option>
+                <option value="ennakko">Ennakkoäänet</option>
+                <option value="ehdokkaat">Ehdokkaiden lukumäärä</option>
+              </select>
+            </label>
+
+            <label>
+              Alue
+              <select id="geoSelect"></select>
+            </label>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Suomen kartta</h2>
+          <div id="map"></div>
+          <p class="hint">
+            Valitse vasemmalta maakunta tai kunta – kartalla korostetaan alue ja väri
+            näyttää suurimman puolueen.
+          </p>
+        </div>
+      </section>
+
+      <!-- oikee plasta -->
+      <section class="rightPane">
+        <div class="cardsRow">
+          <div class="kpiCard">
+            <div class="kpiLabel">Havaintojen määrä</div>
+            <div id="kpiCount" class="kpiValue">–</div>
+          </div>
+          <div class="kpiCard">
+            <div class="kpiLabel">Puolueita aineistossa</div>
+            <div id="kpiParties" class="kpiValue">–</div>
+          </div>
+          <div class="kpiCard">
+            <div class="kpiLabel">Alueita yhteensä</div>
+            <div id="kpiGeos" class="kpiValue">–</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Puoluejärjestys valitulla alueella</h2>
+          <canvas id="partyBar"></canvas>
+        </div>
+
+                <div class="card">
+          <h2>Äänet sukupuolen ja puolueen mukaan</h2>
+          <canvas id="sexBar"></canvas>
+        </div>
+
+        <!-- Presidentinvaalit??????????????????????? ei toimi -->
+        <section id="presidentialSection" style="display:none;">
+          <div class="card">
+            <h2>Presidentinvaali 2024 – alueittain</h2>
+            <label>
+              Alue
+              <select id="presGeoSelect"></select>
+            </label>
+            <canvas id="presChart"></canvas>
+          </div>
+        </section>
+      </section>
+    </main>
+
+
+
+  </body>
+</html>
